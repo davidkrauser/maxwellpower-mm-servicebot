@@ -1,9 +1,8 @@
 // app.js
 const express = require('express');
-const bodyParser = require('body-parser');
 require('dotenv').config();
 
-const removeUserRoute = require('./routes/removeUser');
+const performActionRoute = require('./routes/performAction');
 const listActionsRoute = require('./routes/listActions');
 
 const app = express();
@@ -13,10 +12,10 @@ const PORT = process.env.PORT || 3000;
 app.enable('etag');
 
 // Middleware to parse incoming request bodies
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Define routes
-app.use('/remove-user', removeUserRoute);
+app.use('/perform-action', performActionRoute);
 app.use('/list-actions', listActionsRoute);
 
 // Start the server
